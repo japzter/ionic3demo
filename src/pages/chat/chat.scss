@@ -1,0 +1,54 @@
+page-chat {
+  .chat-block{
+    display: inline-block;
+    padding: 5px 10px;
+    background: color($colors, 'primary');
+    margin: 5px;
+    color: white;
+    border-radius: 5px;
+  }
+  .username{
+    font-weight: bold;
+    font-size: 80%
+  }
+  .message{
+    font-size: 120%;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+    background: color($colors, 'secondary');
+  }
+  .messages:after{
+    content: '';
+    display: block;
+    clear:both;
+  }
+  .messages.special .chat-block .message{
+    background: white;
+    display: inline-block;
+    padding: 0 5px;
+  }
+  .messages.special .chat-block:before {
+    content: '';
+    height: 2px;
+    background: #ccc;
+    display: block;
+    top: 50%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  .messages.special .chat-block {
+    background: transparent;
+    color: black;
+    font-size: 80%;
+    width: 100%;
+    float: none;
+    text-align: center;
+    position: relative;
+  }
+}
