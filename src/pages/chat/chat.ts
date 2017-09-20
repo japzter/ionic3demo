@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Profile } from '../../models/profile';
 
+import { TestProvider } from '../../providers/test/test';
+
 /**
  * Generated class for the ChatPage page.
  *
@@ -22,8 +24,8 @@ export class ChatPage {
   message: string;
   messages: object[] = [];
 
-  constructor(private db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
-    this.profile = navParams.get('profile');
+  constructor(private db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private testProvider: TestProvider) {
+    this.profile = this.testProvider.getProfile();
     this.db.list('/chat').subscribe( items => {
       this.messages = items;
     })

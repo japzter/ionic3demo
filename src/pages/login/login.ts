@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-
 import { User } from '../../models/user';
-import { Profile } from '../../models/profile';
 import { ChatPage } from '../chat/chat';
+
+import { TestProvider } from '../../providers/test/test';
 
 
 /**
@@ -23,10 +23,10 @@ import { ChatPage } from '../chat/chat';
 })
 export class LoginPage {
   user = {} as User;
-  profile = {} as Profile;
   
   
-  constructor(public alertCtrl: AlertController, private db: AngularFireDatabase, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  
+  constructor(public alertCtrl: AlertController, private db: AngularFireDatabase, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private testProvider:TestProvider) {
   }
   
   showAlert(title: string, message: string) {
@@ -45,7 +45,8 @@ export class LoginPage {
       this.user.email = '';
       this.user.password = '';
       this.db.object(`/users/${data.uid}`).subscribe(profile => {
-        this.navCtrl.push(ChatPage, {profile: profile});
+        this.testProvider.setProfile(profile);
+        this.navCtrl.push(ChatPage);
       })
     })
     .catch(error => {

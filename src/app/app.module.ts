@@ -13,6 +13,7 @@ import { ChatPage } from '../pages/chat/chat';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { TestProvider } from '../providers/test/test';
 
 const FIREBASECONFIG = {
     apiKey: "AIzaSyBDcQaalrBJG_EqdYEjDk0Nt3RySmTyXPg",
@@ -49,7 +50,8 @@ const FIREBASECONFIG = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TestProvider
   ]
 })
 export class AppModule {}
